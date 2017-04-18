@@ -29,12 +29,16 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('tableCtrl', function($scope) {
-    $scope.users = [{"name":"ytf1","sex":"男","age":21},{"name":"ytf2","sex":"男","age":11},{"name":"ytf3","sex":"男","age":23}];
+    $scope.users = [{"name":"ytf1","sex":"男","age":21},{"name":"ytf2","sex":"男","age":11},{"name":"ytf3","sex":"男","age":3}];
     $scope.ageAdd = function(name){
       angular.forEach($scope.users, function(data,index,array){
         //data等价于array[index]
           if (data.name == name) {
-            data.age++;
+            if (data.age<100) {
+              data.age++;
+            }else{
+              alert("年龄不应该超过一百岁");
+            }
           }
           
         });
@@ -43,7 +47,11 @@ app.controller('tableCtrl', function($scope) {
       angular.forEach($scope.users, function(data,index,array){
         //data等价于array[index]
           if (data.name ==name) {
-            data.age--;
+            if (data.age>0) {
+              data.age--;
+            }else{
+              alert("年龄不应该为负数");
+            }
           }
         });
     }
