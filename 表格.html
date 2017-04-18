@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<script src="angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<body>
+<div ng-app="myApp" ng-controller = "tableCtrl">
+  <h2>表格</h2>
+
+
+  <table class="table">
+  <caption>基本的表格布局</caption>
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>年龄</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+    <tr ng-repeat ="user in users">
+      <td>{{user.name}}</td>
+      <td>{{user.sex}}</td>
+      <td>{{user.age}}</td>
+      <td><button ng-click="ageAdd(user.name)">年龄+1</button><button ng-click="ageReduce(user.name)">年龄-1</button></td>
+    </tr>
+  </table>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('tableCtrl', function($scope) {
+    $scope.users = [{"name":"ytf1","sex":"男","age":21},{"name":"ytf2","sex":"男","age":11},{"name":"ytf3","sex":"男","age":23}];
+    $scope.ageAdd = function(name){
+      angular.forEach($scope.users, function(data,index,array){
+        //data等价于array[index]
+          if (data.name == name) {
+            data.age++;
+          }
+          
+        });
+    }
+    $scope.ageReduce = function(name){
+      angular.forEach($scope.users, function(data,index,array){
+        //data等价于array[index]
+          if (data.name ==name) {
+            data.age--;
+          }
+        });
+    }
+});
+</script>
+
+</body>
+</html> 
