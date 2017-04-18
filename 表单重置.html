@@ -1,0 +1,39 @@
+ <!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<script src="angular.min.js"></script>
+<body>
+
+<h2>表单重置</h2>
+
+<form  ng-app="myApp"  ng-controller="resetCtrl"
+name="myForm">
+
+<p>用户名:<br>
+  <input type="text" name="name" ng-model="user.name" >
+</p>
+
+<p>邮箱:<br>
+  <input type="email" name="email" ng-model="user.email" >
+</p>
+
+<p>
+  <button type="button" ng-click = "resetFun()">重置</button>
+</p>
+
+</form>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('resetCtrl', function($scope) {
+    $scope.master = {"name":"yuantingfei","email":"1057723169@qq.com"} 
+    $scope.user = {"name":"yuantingfei","email":"1057723169@qq.com"} 
+    $scope.resetFun = function(){
+      $scope.user = angular.copy($scope.master);
+    }
+    
+});
+</script>
+
+</body>
+</html> 
